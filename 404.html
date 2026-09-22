@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>404 | Pagamento pendente</title>
+<meta name="description" content="Este site está pausado por pagamento pendente e volta ao ar assim que a mensalidade for regularizada.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#07080D">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Site pausado: pagamento pendente">
+<meta property="og:description" content="O site volta ao ar assim que a mensalidade for regularizada.">
+<meta property="og:image" content="/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/poster-plate.webp" as="image" fetchpriority="high">
+<link rel="preload" href="/assets/poster-actor.webp" as="image" fetchpriority="high">
+<script>document.documentElement.className='js';</script>
+<style>
+@font-face{
+  font-family:"Archivo";
+  src:url("/fonts/archivo-var.woff2") format("woff2");
+  font-weight:100 900;
+  font-stretch:62% 125%;
+  font-display:swap;
+}
+:root{
+  --void:#07080D;
+  --ink:#E8ECF3;
+  --ink-2:rgba(232,236,243,.84);
+  --mute:#A3ACBD;
+  --line:rgba(232,236,243,.18);
+  --amber:#F2B441;
+  --vh:1vh;
+  --pad:clamp(20px,3.2vw,56px);
+  --stage-h:clamp(420px,calc(var(--vh)*68),900px);
+  --stage-w:calc(var(--stage-h)*9/16);
+  --stage-x:50%;
+  --fade-start:90%;
+  color-scheme:dark;
+}
+@supports (height:1svh){:root{--vh:1svh}}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--void);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  min-height:calc(var(--vh)*100);
+  background:var(--void);
+  color:var(--ink);
+  font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-weight:400;
+  font-stretch:100%;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+
+/* ---------- ambiente: continua a parede e o chão reais do vídeo ---------- */
+.world{
+  position:absolute;left:0;right:0;top:0;
+  height:var(--stage-h);
+  z-index:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(3,4,7,.62) 0,rgba(3,4,7,0) calc(var(--stage-x) - var(--stage-w)*.55),rgba(3,4,7,0) calc(var(--stage-x) + var(--stage-w)*.55),rgba(3,4,7,.62) 100%),
+    linear-gradient(180deg,rgba(7,8,13,0) var(--fade-start),var(--void) 100%),
+    linear-gradient(180deg,#07080D 0,#070B12 10%,#080B12 30%,#070A10 50%,#07080D 70%,#080B13 76%,#0F151E 79%,#181F2A 82%,#232A36 86%,#303743 90%,#2E353F 95%,#2B333C 100%);
+}
+
+.scene{position:relative;overflow-x:clip;min-height:calc(var(--vh)*100);padding-top:var(--stage-h)}
+@supports not (overflow:clip){.scene{overflow-x:hidden}}
+
+.stage{
+  position:absolute;top:0;
+  left:calc(var(--stage-x) - var(--stage-w)/2);
+  width:var(--stage-w);height:var(--stage-h);
+  z-index:1;
+}
+.plate{
+  position:absolute;inset:0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 17%,#000 83%,transparent 100%),linear-gradient(180deg,#000 var(--fade-start),transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0,#000 17%,#000 83%,transparent 100%),linear-gradient(180deg,#000 var(--fade-start),transparent 100%);
+  mask-composite:intersect;
+}
+.plate video{position:absolute;top:0;left:0;width:200%;height:100%;display:block}
+.plate canvas,.plate .still,.actor,.actor-still{position:absolute;inset:0;width:100%;height:100%;display:block}
+.still,.actor-still{object-fit:cover}
+#plate,#actor{opacity:0}
+.is-live #plate,.is-live #actor{opacity:1}
+.is-live .still,.is-live .actor-still{opacity:0;transition:opacity .3s linear .05s}
+.actor,.actor-still{z-index:3}
+
+/* ---------- o 404 como objeto da sala ---------- */
+.monument{
+  position:absolute;inset:0;width:100%;height:100%;
+  overflow:visible;z-index:2;
+}
+.monument text{
+  font-family:"Archivo",system-ui,sans-serif;
+  font-weight:900;font-stretch:62%;
+  font-variation-settings:"wdth" 62,"wght" 900;
+  letter-spacing:0;
+}
+.js .monument{opacity:0}
+.js.fonts .monument{animation:lightup 1.7s cubic-bezier(.2,.7,.2,1) .15s both}
+@keyframes lightup{
+  0%{opacity:0}
+  6%{opacity:.55}
+  10%{opacity:.08}
+  16%{opacity:.8}
+  21%{opacity:.25}
+  30%{opacity:.95}
+  100%{opacity:1}
+}
+
+/* ---------- barra ---------- */
+.bar{
+  position:absolute;z-index:6;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:calc(var(--pad)*.6 + env(safe-area-inset-top,0px)) calc(var(--pad) + env(safe-area-inset-right,0px)) 0 calc(var(--pad) + env(safe-area-inset-left,0px));
+  font-size:14px;font-weight:600;letter-spacing:.01em;
+}
+.brand{display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.brand svg{width:14px;height:14px;color:var(--amber)}
+.bar a{color:var(--mute);text-decoration:none;font-weight:500;font-variant-numeric:tabular-nums}
+.bar a:hover{color:var(--ink)}
+
+/* ---------- fala sincronizada ---------- */
+.line{
+  font-size:clamp(19px,1.55vw,26px);
+  font-weight:500;line-height:1.28;
+  min-height:2.56em;
+  color:var(--ink);
+  transition:opacity .18s linear,transform .18s ease-out;
+  text-wrap:balance;
+}
+.line.swap{opacity:0;transform:translateY(4px)}
+.beats{display:flex;gap:4px;margin-top:14px;visibility:hidden}
+.is-live .beats{visibility:visible}
+.beats i{display:block;height:2px;background:var(--line);overflow:hidden;position:relative}
+.beats i::after{content:"";position:absolute;inset:0;background:var(--amber);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+
+/* ---------- status ---------- */
+h1{
+  font-weight:800;font-stretch:62%;
+  font-variation-settings:"wdth" 62,"wght" 800;
+  text-transform:uppercase;
+  line-height:.9;letter-spacing:.01em;
+  font-size:min(64px,calc((100vw - var(--pad)*2)/8.9));
+}
+.lead{margin-top:14px;font-size:16px;line-height:1.55;color:var(--ink-2);max-width:46ch}
+.lead strong{color:var(--ink);font-weight:600;overflow-wrap:anywhere}
+.aside{margin-top:8px;font-size:14px;line-height:1.5;color:var(--mute)}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  height:48px;padding:0 18px;border-radius:6px;
+  font-size:15px;font-weight:600;font-stretch:88%;
+  font-variation-settings:"wdth" 88,"wght" 600;
+  text-decoration:none;white-space:nowrap;
+  transition:background-color .15s,border-color .15s,color .15s;
+}
+.btn svg{width:19px;height:19px;flex:none}
+.btn.primary{background:var(--ink);color:var(--void)}
+.btn.primary:hover{background:#fff}
+.btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:rgba(232,236,243,.5)}
+
+/* ---------- empilhado (celular e tablet em pé) ---------- */
+.scene{display:flex;flex-direction:column}
+.talk{display:contents}
+.line,.beats,.status,.actions{width:min(100% - var(--pad)*2,560px);margin-inline:auto;position:relative;z-index:4}
+.line{order:1;text-align:center;margin-top:-18px}
+.beats{order:2;max-width:280px}
+.status{order:3;margin-top:30px}
+.actions{order:4;margin-top:24px;padding-bottom:calc(var(--pad)*1.4 + env(safe-area-inset-bottom,0px))}
+
+/* ---------- desktop e ultrawide ---------- */
+@media (min-width:1100px) and (min-aspect-ratio:4/3){
+  :root{
+    --stage-h:calc(var(--vh)*100);
+    --fade-start:100%;
+    --side:calc((100vw - var(--stage-w))/2 - var(--pad)*1.4);
+    --block:min(540px,var(--side));
+  }
+  .scene{display:block;padding-top:0;height:calc(var(--vh)*100)}
+  .talk{display:block}
+  .talk,.status{
+    position:absolute;margin:0;
+    width:var(--block);
+    bottom:calc(var(--pad)*.75 + env(safe-area-inset-bottom,0px));
+    z-index:4;
+  }
+  .talk .line,.talk .beats,.talk .actions{width:auto;max-width:none;margin-inline:0;padding:0}
+  .status{left:calc(var(--pad) + env(safe-area-inset-left,0px))}
+  .talk{right:calc(var(--pad) + env(safe-area-inset-right,0px))}
+  .line{text-align:left;margin-top:0;min-height:0}
+  .talk .actions{margin-top:20px;gap:8px}
+  .btn{height:44px;padding:0 14px;font-size:14px}
+  .btn svg{width:18px;height:18px}
+  h1{font-size:min(68px,calc(var(--block)/8.9))}
+  .lead{font-size:15px;margin-top:12px}
+}
+@media (min-width:1100px) and (min-aspect-ratio:4/3) and (max-height:940px){
+  .aside{display:none}
+}
+@media (min-width:1100px) and (min-aspect-ratio:4/3) and (max-height:820px){
+  .lead{font-size:14px;line-height:1.5}
+  .line{font-size:19px}
+}
+
+/* ---------- celular deitado ---------- */
+@media (orientation:landscape) and (max-height:560px) and (max-width:1099px){
+  :root{--stage-h:calc(var(--vh)*100);--stage-x:27%;--fade-start:100%}
+  .scene{display:grid;grid-template-columns:54% 1fr;align-content:center;padding:64px 0 20px;min-height:calc(var(--vh)*100)}
+  .line,.beats,.status,.actions{grid-column:2;width:auto;max-width:none;margin:0;padding-right:calc(var(--pad) + env(safe-area-inset-right,0px));text-align:left}
+  .beats{max-width:220px;margin-top:10px}
+  .status{margin-top:18px}
+  .actions{margin-top:16px;padding-bottom:0}
+  .line{font-size:18px;min-height:0}
+  h1{font-size:min(44px,calc(40vw/8.9))}
+  .lead{font-size:14px}
+  .aside{display:none}
+  .btn{height:42px;padding:0 13px;font-size:14px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js.fonts .monument{animation:none;opacity:1}
+  .line{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="world" aria-hidden="true"></div>
+
+<header class="bar">
+  <span class="brand">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5c.9 6.4 4.1 9.6 10.5 10.5-6.4.9-9.6 4.1-10.5 10.5-.9-6.4-4.1-9.6-10.5-10.5C7.9 11.1 11.1 7.9 12 1.5z"/></svg>
+    Nova AI Solutions
+  </span>
+  <a id="bar-link" href="https://wa.me/5511951007967" target="_blank" rel="noopener">(11) 95100-7967</a>
+</header>
+
+<main class="scene">
+  <div class="stage" aria-hidden="true">
+    <div class="plate">
+      <video id="src" muted playsinline loop preload="none" disablepictureinpicture disableremoteplayback></video>
+      <img class="still" src="/assets/poster-plate.webp" alt="" width="720" height="1280" decoding="async" fetchpriority="high">
+      <canvas id="plate"></canvas>
+    </div>
+
+    <svg class="monument" viewBox="0 0 720 1280" preserveAspectRatio="xMidYMid meet" focusable="false">
+      <defs>
+        <radialGradient id="lit" gradientUnits="objectBoundingBox" cx=".5" cy="-.18" r="1.05" fx=".5" fy="-.18">
+          <stop offset="0" stop-color="#C3CDE0"/>
+          <stop offset=".32" stop-color="#6B7A97"/>
+          <stop offset=".58" stop-color="#2C3650"/>
+          <stop offset=".82" stop-color="#141B2B"/>
+          <stop offset="1" stop-color="#0B0F1A"/>
+        </radialGradient>
+        <linearGradient id="fadeRef" gradientUnits="userSpaceOnUse" x1="0" y1="1011" x2="0" y2="1250">
+          <stop offset="0" stop-color="#fff" stop-opacity=".30"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="refMask" maskUnits="userSpaceOnUse" x="-2000" y="1011" width="4720" height="400">
+          <rect x="-2000" y="1011" width="4720" height="400" fill="url(#fadeRef)"/>
+        </mask>
+        <filter id="soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="2.5"/></filter>
+      </defs>
+      <g mask="url(#refMask)">
+        <use href="#t404" transform="matrix(1 0 0 -1 0 2022)" filter="url(#soft)"/>
+      </g>
+      <text id="t404" x="360" y="1011" text-anchor="middle" font-size="1000" fill="url(#lit)">404</text>
+    </svg>
+
+    <img class="actor-still" src="/assets/poster-actor.webp" alt="" width="720" height="1280" decoding="async" fetchpriority="high">
+    <canvas id="actor" class="actor"></canvas>
+  </div>
+
+  <div class="talk">
+    <p class="line" id="line" aria-hidden="true">— Regularize e ele volta ao ar.</p>
+    <div class="beats" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="actions" id="actions">
+      <a class="btn primary" id="cta-pay" href="https://wa.me/5511951007967?text=Ol%C3%A1!%20Quero%20regularizar%20o%20pagamento%20do%20meu%20site%20para%20reativar." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4a9.6 9.6 0 0 0-8.2 14.6L2.5 21.5l4.6-1.2A9.6 9.6 0 1 0 12 2.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path fill="currentColor" d="M8.7 7.5c.3-.5.6-.5.9-.5h.6c.2 0 .4.1.5.4l.8 1.9c.1.3 0 .5-.1.7l-.5.6c-.2.2-.2.4-.1.6.5.9 1.1 1.6 1.9 2.2.7.5 1.3.8 1.9 1 .2.1.4 0 .6-.2l.7-.8c.2-.2.4-.3.7-.2l1.8.9c.3.1.4.3.4.5 0 .6-.2 1.3-.7 1.7-.6.5-1.4.8-2.3.7-1.4-.2-2.9-.9-4.3-2.1-1.3-1.1-2.3-2.4-2.9-3.7-.5-1.2-.5-2.4 0-3.3z"/></svg>
+        Regularizar pelo WhatsApp
+      </a>
+      <a class="btn ghost" id="cta-proof" href="https://wa.me/5511951007967?text=Ol%C3%A1!%20J%C3%A1%20fiz%20o%20pagamento%20do%20meu%20site.%20Vou%20enviar%20o%20comprovante%20aqui." target="_blank" rel="noopener">Enviar comprovante</a>
+    </div>
+  </div>
+
+  <section class="status">
+    <h1>Pagamento pendente</h1>
+    <p class="lead" id="lead">Este site está pausado porque a mensalidade com a Nova AI Solutions está em aberto. Ele volta ao ar assim que o pagamento for confirmado.</p>
+    <p class="aside">Veio só visitar a página? Tente de novo mais tarde.</p>
+  </section>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  const doc = document.documentElement, body = document.body;
+  const $ = (s) => document.querySelector(s);
+
+  /* ---------- fonte: o 404 só acende depois que a Archivo chegar ---------- */
+  let fontsMarked = false;
+  const markFonts = () => { if (!fontsMarked) { fontsMarked = true; doc.classList.add('fonts'); fit(); } };
+  if (document.fonts && document.fonts.load) {
+    Promise.all([document.fonts.load('900 100px "Archivo"'), document.fonts.load('800 40px "Archivo"')])
+      .then(markFonts, markFonts);
+    setTimeout(markFonts, 1600);
+  } else { markFonts(); }
+
+  /* ---------- domínio do cliente e links do WhatsApp ---------- */
+  const WA = '5511951007967';
+  const rawHost = (location.hostname || '').replace(/^www\./, '');
+  const host = /^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])?$/.test(rawHost) ? '' : rawHost;
+  const wa = (msg) => 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+  if (host) {
+    const lead = $('#lead');
+    lead.textContent = '';
+    lead.append('O site ');
+    const s = document.createElement('strong'); s.textContent = host; lead.append(s);
+    lead.append(' está pausado porque a mensalidade com a Nova AI Solutions está em aberto. Ele volta ao ar assim que o pagamento for confirmado.');
+    $('#cta-pay').href = wa('Olá! Quero regularizar o pagamento do site ' + host + ' para reativar.');
+    $('#cta-proof').href = wa('Olá! Já fiz o pagamento do site ' + host + '. Vou enviar o comprovante aqui.');
+    $('#bar-link').href = wa('Olá! Vim pela página de pagamento pendente do site ' + host + '.');
+  }
+
+  /* ---------- tamanho do 404: preenche a largura sem passar da cabeça ---------- */
+  const stage = $('.stage'), t404 = $('#t404');
+  const ADV = 1.314;           /* avanço de "404" em wdth 62 / wght 900, em em */
+  const mqDesk = matchMedia('(min-width:1100px) and (min-aspect-ratio:4/3)');
+  const mqShort = matchMedia('(orientation:landscape) and (max-height:560px) and (max-width:1099px)');
+  function fit() {
+    const h = stage.getBoundingClientRect().height || 1;
+    const s = h / 1280;
+    const vw = doc.clientWidth;
+    let avail, cap;
+    if (mqDesk.matches) { avail = vw * 0.94; cap = innerHeight < 820 ? 1040 : 1100; }
+    else if (mqShort.matches) { avail = vw * 0.5; cap = 1000; }
+    else { avail = vw * 1.12; cap = 1000; }   /* no celular o 404 sangra de leve nas bordas */
+    const F = Math.max(300, Math.min(cap, avail / s / ADV));
+    t404.setAttribute('font-size', F.toFixed(1));
+    sizeCanvases(h);
+  }
+
+  /* ---------- linha do tempo: segue a ação real do personagem (24 fps) ---------- */
+  const FPS = 24, TOTAL = 710;
+  const BEATS = [
+    [0,   134, '— Ué, cadê o site que estava aqui?'],
+    [134, 372, '— Procurei em todo canto. Não está.'],
+    [372, 470, '— Hum… a mensalidade venceu.'],
+    [470, 614, '— Sem pagamento, o site fica fora do ar.'],
+    [614, 710, '— Regularize e ele volta ao ar.']
+  ];
+  const line = $('#line');
+  const bars = Array.from(document.querySelectorAll('.beats i'));
+  bars.forEach((b, i) => { b.style.flex = String(BEATS[i][1] - BEATS[i][0]); });
+  let beat = -1, swapTimer = 0;
+  function setBeat(i, instant) {
+    if (i === beat) return;
+    beat = i;
+    bars.forEach((b, k) => b.style.setProperty('--p', k < i ? '1' : '0'));
+    clearTimeout(swapTimer);
+    if (instant) { line.textContent = BEATS[i][2]; line.classList.remove('swap'); return; }
+    line.classList.add('swap');
+    swapTimer = setTimeout(() => { line.textContent = BEATS[i][2]; line.classList.remove('swap'); }, 180);
+  }
+  function sync(t, dur) {
+    const f = Math.floor(((t % dur) / dur) * TOTAL);
+    let i = 0; while (i < BEATS.length - 1 && f >= BEATS[i][1]) i++;
+    setBeat(i, false);
+    const b = BEATS[i];
+    bars[i].style.setProperty('--p', Math.min(1, Math.max(0, (f - b[0]) / (b[1] - b[0]))).toFixed(3));
+  }
+
+  /* ---------- palco: fundo (2D) + personagem recortado (WebGL), mesmo frame ---------- */
+  const video = $('#src'), plateC = $('#plate'), actorC = $('#actor');
+  let pctx = null, gl = null, tex = null, live = false, running = false, dead = false;
+
+  function sizeCanvases(h) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const ch = Math.max(2, Math.min(1280, Math.round(h * dpr)));
+    const cw = Math.round(ch * 9 / 16);
+    for (const c of [plateC, actorC]) if (c.width !== cw || c.height !== ch) { c.width = cw; c.height = ch; }
+    if (gl) gl.viewport(0, 0, cw, ch);
+    if (live && video.readyState >= 2) draw();
+  }
+
+  function initGL() {
+    try {
+      pctx = plateC.getContext('2d', { alpha: false });
+      gl = actorC.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false, depth: false, stencil: false, powerPreference: 'low-power' });
+      if (!pctx || !gl) return false;
+      const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+      const prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}'));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER,
+        'precision mediump float;varying vec2 v;uniform sampler2D t;' +
+        'void main(){vec3 c=texture2D(t,vec2(v.x*.5,v.y)).rgb;' +
+        'float a=texture2D(t,vec2(.5+v.x*.5,v.y)).g;a=smoothstep(.04,.96,a);' +
+        'gl_FragColor=vec4(c*a,a);}'));
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
+      gl.useProgram(prog);
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      tex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.clearColor(0, 0, 0, 0);
+      actorC.addEventListener('webglcontextlost', (e) => { e.preventDefault(); goStatic(); }, false);
+      return true;
+    } catch (err) { gl = null; return false; }
+  }
+
+  function draw() {
+    const vw = video.videoWidth, vh = video.videoHeight;
+    if (!vw || !vh) return false;
+    pctx.drawImage(video, 0, 0, vw / 2, vh, 0, 0, plateC.width, plateC.height);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    return true;
+  }
+
+  const hasRVFC = 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
+  let pending = false;
+  function loop() {
+    if (!running || pending) return;
+    pending = true;
+    if (hasRVFC) video.requestVideoFrameCallback(onFrame);
+    else requestAnimationFrame(() => onFrame(0, null));
+  }
+  function onFrame(now, meta) {
+    pending = false;
+    if (!running || dead) return;
+    try {
+      if (draw()) {
+        const dur = video.duration && isFinite(video.duration) ? video.duration : TOTAL / FPS;
+        sync(meta ? meta.mediaTime : video.currentTime, dur);
+        if (!live) { live = true; body.classList.add('is-live'); }
+      }
+    } catch (err) { goStatic(); return; }
+    loop();
+  }
+
+  function goStatic() {
+    dead = true; running = false; live = false;
+    body.classList.remove('is-live');
+    try { video.pause(); video.removeAttribute('src'); video.load(); } catch (e) {}
+    setBeat(BEATS.length - 1, true);
+  }
+
+  function tryPlay() {
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {
+      /* autoplay bloqueado (modo economia no iPhone, por exemplo): começa no primeiro toque */
+      const kick = () => { ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => removeEventListener(ev, kick, true)); if (!dead) video.play().catch(() => {}); };
+      ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => addEventListener(ev, kick, true));
+    });
+  }
+
+  function start() {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const conn = navigator.connection || {};
+    if (reduce.matches || conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')) { setBeat(BEATS.length - 1, true); return; }
+    if (!initGL()) { setBeat(BEATS.length - 1, true); return; }
+    reduce.addEventListener && reduce.addEventListener('change', (e) => { if (e.matches) goStatic(); });
+
+    video.muted = true; video.defaultMuted = true;
+    video.setAttribute('muted', '');
+    video.preload = 'auto';
+    video.src = '/assets/nova-character.mp4';
+    video.addEventListener('error', goStatic, { once: true });
+    running = true;
+    fit();
+    loop();
+    tryPlay();
+    /* sem nenhum frame em 12 s e sem estar esperando toque: fica na imagem estática */
+    setTimeout(() => { if (!live && !dead && video.readyState < 2 && video.networkState === 3) goStatic(); }, 12000);
+
+    document.addEventListener('visibilitychange', () => {
+      if (dead) return;
+      if (document.hidden) video.pause();
+      else if (running) { tryPlay(); loop(); }
+    });
+  }
+
+  let rz = 0;
+  addEventListener('resize', () => { cancelAnimationFrame(rz); rz = requestAnimationFrame(fit); });
+  mqDesk.addEventListener && mqDesk.addEventListener('change', fit);
+  mqShort.addEventListener && mqShort.addEventListener('change', fit);
+
+  fit();
+  start();
+})();
+</script>
+</body>
+</html>
